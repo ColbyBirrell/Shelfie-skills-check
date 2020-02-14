@@ -1,10 +1,15 @@
-CREATE TABLE products (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(200),
-    price INT,
-    img TEXT
-)
+-- CREATE TABLE products (
+--     id SERIAL PRIMARY KEY,
+--     name VARCHAR(200),
+--     price INT,
+--     img TEXT
+-- )
 
-INSERT INTO products
-(name, price, img)
-VALUES (colby, 20, THis will BE a Pic)
+-- SELECT * FROM products
+
+-- INSERT INTO products
+-- (name, price, img)
+-- VALUES ($1, $2, $3 )
+
+
+

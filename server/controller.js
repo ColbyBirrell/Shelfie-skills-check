@@ -29,6 +29,21 @@ module.exports = {
         res.status(500).send({ errorMessage: "this done broke" });
         console.log(err);
       });
+  },
+
+  createProduct: (req, res) => {
+    const dbInstance = req.app.get("db");
+    const { name, price, img } = req.body;
+
+    dbInstance
+      .create_product([name, price, img])
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        res.status(500).send({ errorMessage: "create is borked, fix it" });
+        console.log(err);
+      });
   }
 };
 

@@ -1,19 +1,23 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class Form extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      productName: "",
+      name: "",
       price: "",
-      imageUrl: ""
+      img: ""
     };
+
+    this.handleAdd = this.handleAdd.bind(this);
+    // this.getProducts = this.props.getProducts.bind(this);
   }
 
   handleName(value) {
     this.setState({
-      productName: value
+      name: value
     });
   }
 
@@ -25,17 +29,30 @@ export default class Form extends Component {
 
   handleImage(value) {
     this.setState({
-      imageUrl: value
+      img: value
     });
   }
 
   handleCancel = event => {
     this.setState({
-      productName: "",
+      name: "",
       price: "",
-      imageUrl: ""
+      img: ""
     });
   };
+
+  handleAdd() {
+    // const { name, price, img } = this.state;
+    axios
+      .post(`/api/inventory`, { ...this.state })
+      .then(res => {
+        this.props.getProducts();
+        this.handleCancel();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   render() {
     // console.log(this.state);
@@ -59,7 +76,7 @@ export default class Form extends Component {
           onChange={event => this.handleImage(event.target.value)}
         ></input>
         <button onClick={this.handleCancel}>Cancel</button>
-        <button>Add to Inventory</button>
+        <button onClick={this.handleAdd}>Add to Inventory</button>
       </div>
     );
   }
