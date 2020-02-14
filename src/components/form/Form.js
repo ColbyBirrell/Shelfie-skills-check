@@ -1,7 +1,63 @@
 import React, { Component } from "react";
 
 export default class Form extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      productName: "",
+      price: "",
+      imageUrl: ""
+    };
+  }
+
+  handleName(value) {
+    this.setState({
+      productName: value
+    });
+  }
+
+  handlePrice(value) {
+    this.setState({
+      price: value
+    });
+  }
+
+  handleImage(value) {
+    this.setState({
+      imageUrl: value
+    });
+  }
+
+  handleCancel = event => {
+    this.setState({
+      productName: "",
+      price: "",
+      imageUrl: ""
+    });
+  };
+
   render() {
-    return <div>Form.js</div>;
+    // console.log(this.state);
+    return (
+      <div>
+        Form.js
+        <input
+          value={this.state.productName}
+          onChange={event => this.handleName(event.target.value)}
+        ></input>
+        <input
+          type="number"
+          value={this.state.price}
+          onChange={event => this.handlePrice(event.target.value)}
+        ></input>
+        <input
+          value={this.state.imageUrl}
+          onChange={event => this.handleImage(event.target.value)}
+        ></input>
+        <button onClick={this.handleCancel}>Cancel</button>
+        <button>Add to Inventory</button>
+      </div>
+    );
   }
 }
