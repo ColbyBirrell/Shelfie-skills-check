@@ -7,7 +7,22 @@ import Header from "./components/header/Header";
 class App extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      inventoryList: [
+        {
+          id: 50,
+          name: "Testprod",
+          price: 27,
+          img: "imgtesturl"
+        },
+        {
+          id: 52,
+          name: "2Testprod2",
+          price: 42,
+          img: "2imgtesturl2"
+        }
+      ]
+    };
   }
 
   render() {
@@ -15,7 +30,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Form />
-        <Dashboard />
+        <Dashboard inventoryList={this.state.inventoryList} />
       </div>
     );
   }
