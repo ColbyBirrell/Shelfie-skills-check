@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./form.css";
 
 export default class Form extends Component {
   constructor(props) {
@@ -62,25 +63,30 @@ export default class Form extends Component {
     // console.log(this.state);
     return (
       <div className="form-container">
-        Add a Product
-        <input
-          value={this.state.productName}
-          placeholder="Product Name"
-          onChange={event => this.handleName(event.target.value)}
-        ></input>
-        <input
-          type="number"
-          value={this.state.price}
-          placeholder="Price"
-          onChange={event => this.handlePrice(event.target.value)}
-        ></input>
-        <input
-          value={this.state.imageUrl}
-          placeholder="Image URL"
-          onChange={event => this.handleImage(event.target.value)}
-        ></input>
-        <button onClick={() => this.handleCancel()}>Cancel</button>
-        <button onClick={() => this.handleAdd()}>Add to Inventory</button>
+        {/* Add a Product */}
+        <div className="img-prev">Img Preview</div>
+        <div className="form-inputs">
+          <input
+            value={this.state.name}
+            placeholder="Product Name"
+            onChange={event => this.handleName(event.target.value)}
+          ></input>
+          <input
+            type="number"
+            value={this.state.price}
+            placeholder="Price"
+            onChange={event => this.handlePrice(event.target.value)}
+          ></input>
+          <input
+            value={this.state.img}
+            placeholder="Image URL"
+            onChange={event => this.handleImage(event.target.value)}
+          ></input>
+        </div>
+        <div className="button-div">
+          <button onClick={() => this.handleCancel()}>Cancel</button>
+          <button onClick={() => this.handleAdd()}>Add to Inventory</button>
+        </div>
       </div>
     );
   }

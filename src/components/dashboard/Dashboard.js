@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Product from "../products/Product";
 import axios from "axios";
+import "./dashboard.css";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
-        <h3> Product Dashboard.js </h3>
+        <h3> Product Dashboard </h3>
         {this.props.inventoryList.map(element => {
           return (
             <Product
