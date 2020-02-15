@@ -12,4 +12,4 @@
 -- VALUES ($1, $2, $3 )
 
 
-
+-- DELETE FROM products WHERE id = $1

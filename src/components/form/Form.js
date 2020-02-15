@@ -12,7 +12,6 @@ export default class Form extends Component {
     };
 
     this.handleAdd = this.handleAdd.bind(this);
-    // this.getProducts = this.props.getProducts.bind(this);
   }
 
   handleName(value) {
@@ -48,6 +47,11 @@ export default class Form extends Component {
       .then(res => {
         this.props.getProducts();
         this.handleCancel();
+        // this.setState({
+        //   name: "",
+        //   price: "",
+        //   img: ""
+        // });
       })
       .catch(err => {
         console.log(err);
@@ -75,8 +79,8 @@ export default class Form extends Component {
           placeholder="Image URL"
           onChange={event => this.handleImage(event.target.value)}
         ></input>
-        <button onClick={this.handleCancel}>Cancel</button>
-        <button onClick={this.handleAdd}>Add to Inventory</button>
+        <button onClick={() => this.handleCancel()}>Cancel</button>
+        <button onClick={() => this.handleAdd()}>Add to Inventory</button>
       </div>
     );
   }
