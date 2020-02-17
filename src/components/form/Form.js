@@ -57,10 +57,16 @@ export default class Form extends Component {
   render() {
     // console.log(this.state);
     return (
-      //ternery for edit toggle, if edit false display current, fi true repalce with current [] create save in app.js to sent the axios req
+      //ternary for edit toggle, if edit false display current, fi true replace with current [] create save in app.js to sent the axios req
       <div className="form-container">
         {/* Add a Product */}
-        <div className="img-prev">Img Preview</div>
+        <div
+          className="img-prev"
+          style={{
+            backgroundImage: `url('${this.state.img}')`,
+            backgroundSize: "cover"
+          }}
+        ></div>
         <div className="form-inputs">
           <input
             value={this.state.name}

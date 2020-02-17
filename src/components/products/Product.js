@@ -11,7 +11,13 @@ export default class Product extends Component {
     return (
       <div className="product">
         {/* <div className="prod"> */}
-        <div className="prod-img">{this.props.product.img}</div>
+        <div
+          className="prod-img"
+          style={{
+            backgroundImage: `url(${this.props.product.img})`,
+            backgroundSize: "cover"
+          }}
+        ></div>
         <div className="prod-text">
           <div className="prod-name">{this.props.product.name}</div>
           <div className="prod-price">{this.props.product.price}</div>
