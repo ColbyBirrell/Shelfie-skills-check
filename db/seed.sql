@@ -13,3 +13,9 @@
 
 
 -- DELETE FROM products WHERE id = $1
+
+-- UPDATE products 
+-- SET name = $2,
+--     price = $3,
+--     img = $4
+-- WHERE id = $1

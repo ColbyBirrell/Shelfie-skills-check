@@ -41,5 +41,20 @@ module.exports = {
         res.status(500).send({ errorMessage: "delete is crap, fix it" });
         console.log(err);
       });
+  },
+
+  editProduct: (req, res) => {
+    const dbInstance = req.app.get("db");
+    const { id } = req.params;
+    const { name, price, img } = req.body;
+
+    dbInstance
+      .update_product([id, name, price, img])
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        res.status(500).send({ errorMessage: "edit done messed up, fix it" });
+      });
   }
 };

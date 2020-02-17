@@ -9,20 +9,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      inventoryList: [
-        // {
-        //   id: 50,
-        //   name: "Testprod",
-        //   price: 27,
-        //   img: "imgtesturl"
-        // },
-        // {
-        //   id: 52,
-        //   name: "2Testprod2",
-        //   price: 42,
-        //   img: "2imgtesturl2"
-        // }
-      ]
+      inventoryList: [],
+      currentProd: [], //pass to form
+      editing: false //pass to form
     };
     this.getProducts = this.getProducts.bind(this);
   }
@@ -38,15 +27,31 @@ class App extends Component {
     });
   }
 
+  editProducts = id => {
+    // console.log(id);
+    this.state.inventoryList.map(element => {
+      if (element.id === id) {
+        // console.log(element);
+        this.state.currentProd.push(element);
+      }
+    });
+  };
+
   render() {
+    // console.log(this.state.currentProd);
     return (
       <div className="App">
         <Header />
         <div className="form-dash">
-          <Form getProducts={this.getProducts} />
+          <Form
+            getProducts={this.getProducts}
+            currentProd={this.state.currentProd}
+            editing={this.state.editing}
+          />
           <Dashboard
             inventoryList={this.state.inventoryList}
             getProducts={this.getProducts}
+            editProducts={this.editProducts}
           />
         </div>
       </div>

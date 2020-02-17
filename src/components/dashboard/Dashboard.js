@@ -19,11 +19,12 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
-        <h3> Product Dashboard </h3>
+        {/* <h3> Product Dashboard </h3> */}
         {this.props.inventoryList.map(element => {
           return (
             <Product
               handleDelete={this.handleDelete}
+              editProducts={this.props.editProducts}
               product={element}
               key={element.id}
             />

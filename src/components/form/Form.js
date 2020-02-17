@@ -8,7 +8,7 @@ export default class Form extends Component {
 
     this.state = {
       name: "",
-      price: "",
+      price: 0,
       img: ""
     };
 
@@ -36,7 +36,7 @@ export default class Form extends Component {
   handleCancel = event => {
     this.setState({
       name: "",
-      price: "",
+      price: 0,
       img: ""
     });
   };
@@ -48,11 +48,6 @@ export default class Form extends Component {
       .then(res => {
         this.props.getProducts();
         this.handleCancel();
-        // this.setState({
-        //   name: "",
-        //   price: "",
-        //   img: ""
-        // });
       })
       .catch(err => {
         console.log(err);
@@ -62,6 +57,7 @@ export default class Form extends Component {
   render() {
     // console.log(this.state);
     return (
+      //ternery for edit toggle, if edit false display current, fi true repalce with current [] create save in app.js to sent the axios req
       <div className="form-container">
         {/* Add a Product */}
         <div className="img-prev">Img Preview</div>
