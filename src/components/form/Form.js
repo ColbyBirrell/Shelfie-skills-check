@@ -9,10 +9,27 @@ export default class Form extends Component {
     this.state = {
       name: "",
       price: 0,
-      img: ""
+      img: "",
+      editing: false
     };
 
     this.handleAdd = this.handleAdd.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(this.props);
+
+    console.log(prevProps);
+    if (prevProps !== this.props) {
+      if (this.props.editId !== 0) {
+        this.setState({
+          name: this.props.currentProd.name,
+          price: this.props.currentProd.price,
+          img: this.props.currentProd.img,
+          editing: true
+        });
+      }
+    }
   }
 
   handleName(value) {
@@ -37,7 +54,8 @@ export default class Form extends Component {
     this.setState({
       name: "",
       price: 0,
-      img: ""
+      img: "",
+      editing: false
     });
   };
 
@@ -54,10 +72,21 @@ export default class Form extends Component {
       });
   }
 
+  saveChange = () => {
+    const { editing, name, price, img } = this.state;
+    this.props.handleSaveChange(this.props.editId, name, price, img);
+    this.setState({
+      editing: false
+    });
+  };
+
   render() {
+    console.log(this.state);
+    console.log(this.props);
+    const { editing, name, price, img } = this.state;
+
     // console.log(this.state);
     return (
-      //ternary for edit toggle, if edit false display current, fi true replace with current [] create save in app.js to sent the axios req
       <div className="form-container">
         {/* Add a Product */}
         <div
@@ -68,6 +97,7 @@ export default class Form extends Component {
           }}
         ></div>
         <div className="form-inputs">
+          {editing ? <div>hello!</div> : <div>Goodbye!</div>}
           <input
             value={this.state.name}
             placeholder="Product Name"
@@ -87,7 +117,11 @@ export default class Form extends Component {
         </div>
         <div className="button-div">
           <button onClick={() => this.handleCancel()}>Cancel</button>
-          <button onClick={() => this.handleAdd()}>Add to Inventory</button>
+          {!editing ? (
+            <button onClick={() => this.handleAdd()}>Add to Inventory</button>
+          ) : (
+            <button onClick={() => this.saveChange()}>Save Change</button>
+          )}
         </div>
       </div>
     );

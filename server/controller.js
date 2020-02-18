@@ -50,8 +50,9 @@ module.exports = {
 
     dbInstance
       .update_product([id, name, price, img])
-      .then(() => {
-        res.sendStatus(200);
+      .then(product => {
+        // console.log(product);
+        res.status(200).send(product);
       })
       .catch(err => {
         res.status(500).send({ errorMessage: "edit done messed up, fix it" });

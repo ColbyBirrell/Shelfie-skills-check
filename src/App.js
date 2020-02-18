@@ -10,8 +10,8 @@ class App extends Component {
     super();
     this.state = {
       inventoryList: [],
-      currentProd: [], //pass to form
-      editing: false //pass to form
+      currentProd: {}, //pass to form
+      editId: 0 //pass to form
     };
     this.getProducts = this.getProducts.bind(this);
   }
@@ -28,12 +28,24 @@ class App extends Component {
   }
 
   editProducts = id => {
-    // console.log(id);
-    this.state.inventoryList.map(element => {
+    console.log(id);
+    this.state.inventoryList.forEach(element => {
       if (element.id === id) {
         // console.log(element);
-        this.state.currentProd.push(element);
+
+        this.setState({
+          editId: id,
+          currentProd: element
+        });
       }
+    });
+  };
+
+  handleSaveChange = (id, name, price, img) => {
+    axios.put(`/api/inventory/${id}`, { name, price, img }).then(res => {
+      this.setState({
+        inventoryList: res.data
+      });
     });
   };
 
@@ -46,7 +58,8 @@ class App extends Component {
           <Form
             getProducts={this.getProducts}
             currentProd={this.state.currentProd}
-            editing={this.state.editing}
+            editId={this.state.editId}
+            handleSaveChange={this.handleSaveChange}
           />
           <Dashboard
             inventoryList={this.state.inventoryList}
